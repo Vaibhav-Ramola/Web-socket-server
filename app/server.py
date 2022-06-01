@@ -1,3 +1,8 @@
+
+# Tried to code from the base python packages
+# Depreciated implementation
+
+
 import websockets
 import asyncio
 

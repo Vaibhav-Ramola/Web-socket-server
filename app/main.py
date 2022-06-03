@@ -32,6 +32,7 @@ def converLandmarksToJson(landmarks):
             'z' : str(landmark.z),  # z : co-ordinate
             'visibility' : str(landmark.visibility) # visibility : parameter
         }
+    # print(len(frame))
     return frame        # returning the dictionary
 
 
@@ -45,9 +46,11 @@ async def websocket_endpoint(websocket: WebSocket):
         try:
             # For the code below check test.py
             with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
+                cap = cv2.VideoCapture('test.mp4')
                 while True:
                     ret, frame = cap.read()
                     if not ret:
+                        print("broke out")
                         break
                     frameRGB = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                     results = holistic.process(frameRGB)
